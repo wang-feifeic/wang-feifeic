@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>遥感图像超分系统 | Real-ESRGAN 3.0</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <main class="container">
+      <header>
+        <h1>遥感图像超分系统</h1>
+        <p>基于 Real-ESRGAN 3.0（x4plus）模型的一站式遥感图像增强平台</p>
+      </header>
+
+      <section class="panel upload-panel">
+        <h2>上传参数</h2>
+        <form id="sr-form">
+          <label class="field">
+            <span>选择遥感图像</span>
+            <input id="image-input" type="file" accept="image/*" required />
+          </label>
+
+          <div class="row">
+            <label class="field">
+              <span>放大倍率</span>
+              <select id="scale">
+                <option value="2">x2</option>
+                <option value="3">x3</option>
+                <option value="4" selected>x4</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>分块大小（大图推荐）</span>
+              <input id="tile" type="number" min="0" value="0" />
+            </label>
+          </div>
+
+          <button id="submit-btn" type="submit">开始超分</button>
+        </form>
+        <p id="status" class="status">等待上传...</p>
+      </section>
+
+      <section class="panel result-panel">
+        <h2>对比结果</h2>
+        <div class="compare">
+          <figure>
+            <figcaption>原始图像</figcaption>
+            <img id="input-preview" alt="原图预览" />
+          </figure>
+          <figure>
+            <figcaption>超分结果</figcaption>
+            <img id="output-preview" alt="超分预览" />
+          </figure>
+        </div>
+        <a id="download-link" class="download disabled" href="#">下载超分图像</a>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
